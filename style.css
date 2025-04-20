@@ -1,0 +1,384 @@
+/* style.css */
+
+/* RESET & GLOBAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+  }
+  body {
+    background: #f4f5f7;
+    color: #001e62;
+  }
+  
+  /* AUTH SECTION */
+  .auth-container {
+    max-width: 320px;
+    margin: 4rem auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+  }
+  .tab-btn {
+    flex: 1;
+    padding: .5rem;
+    background: #e0e0e0;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  .tab-btn.active {
+    background: #d9072d;
+    color: white;
+  }
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .auth-form.hidden {
+    display: none;
+  }
+  .auth-form input {
+    padding: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .auth-form button {
+    padding: .75rem;
+    background: #d9072d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .message {
+    margin-top: .5rem;
+    color: #d9072d;
+  }
+  
+  /* HIDE/SHOW */
+  .hidden {
+    display: none!important;
+  }
+  
+  /* NAVBAR */
+  .navbar {
+    background: #d9072d;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    color: white;
+  }
+  .logo {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin-left: auto;
+  }
+  .nav-links a,
+  .nav-links button {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .nav-links a.active,
+  .nav-links a:hover {
+    text-decoration: underline;
+  }
+  .nav-logout {
+    padding: .25rem .5rem;
+    background: #ff4b5c;
+    border-radius: 4px;
+  }
+  
+  /* MAIN & PAGES */
+  main {
+    padding: 2rem;
+  }
+  .page {
+    display: none;
+  }
+  .page.active,
+  .page:not(.hidden) {
+    display: block;
+  }
+  
+  /* STATS */
+  .stats-overview {
+    display: flex;
+    gap: 2rem;
+    margin: 1rem 0;
+    justify-content: center;
+  }
+  .stat {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  
+  /* TREE VISUALIZATION */
+  .tree-visualization {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+  .tree-item {
+    text-align: center;
+  }
+  .tree-item img {
+    max-width: 120px;
+  }
+  
+  /* SUGGESTION */
+  .suggestion-box {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .suggestion-box button {
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    background: #d9072d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* CARDS GRID */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  /* MISSION CARDS */
+  .mission-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  .mission-card.done {
+    opacity: .6;
+  }
+  .category-tag {
+    float: right;
+    background: #007aff;
+    color: white;
+    font-size: .75rem;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+  .complete-btn {
+    margin-top: .5rem;
+    padding: .5rem 1rem;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .complete-btn:disabled {
+    background: #aaa;
+    cursor: default;
+  }
+  
+  /* FILTER BUTTONS */
+  .mission-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    margin-bottom: 1rem;
+  }
+  .filter-btn {
+    padding: .5rem 1rem;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .filter-btn.active {
+    background: #007aff;
+    color: white;
+    border-color: #007aff;
+  }
+  
+  /* PRIMARY BUTTON */
+  .primary-btn {
+    margin-top: 1rem;
+    padding: .75rem 1.5rem;
+    background: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* MODALS */
+  .modal {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .modal.hidden {
+    display: none;
+  }
+  .modal-content {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+  }
+  .close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  /* FRIENDS / LEADERBOARD */
+  .friend-invite {
+    display: flex;
+    gap: .5rem;
+    margin-bottom: 1rem;
+  }
+  .friend-invite input {
+    flex: 1;
+    padding: .5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .friend-invite button {
+    padding: .5rem 1rem;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .leaderboard {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem;
+  }
+  .leaderboard th,
+  .leaderboard td {
+    border: 1px solid #ddd;
+    padding: .5rem; text-align: center;
+  }
+  tr.highlight {
+    background: #ffe082;
+  }
+  
+  /* REWARDS CARDS */
+  .reward-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  .redeem-btn {
+    margin-top: .5rem;
+    padding: .5rem 1rem;
+    background: #007aff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .redeem-btn:disabled {
+    background: #aaa;
+    cursor: default;
+  }
+  
+  /* ACHIEVEMENTS */
+  .achievement-list {
+    display: grid;
+    gap: 1rem;
+  }
+  .achievement {
+    display: flex;
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  }
+  .achieve-icon {
+    width: 40px;
+    height: 40px;
+    background: #ccc;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+  .progress-bar {
+    background: #eee;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 8px;
+    margin-top: .5rem;
+  }
+  .progress-fill {
+    background: #007aff;
+    height: 100%;
+    width: 0%;
+    transition: width .5s ease;
+  }
+  
+  /* PROFILE CARD */
+  .profile-card {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 1rem auto;
+  }
+  .deposit-section {
+    margin: 1rem 0;
+    text-align: center;
+  }
+  .deposit-section input {
+    padding: .5rem; width: 100px;
+    border: 1px solid #ccc; border-radius: 4px;
+    margin-right: .5rem;
+  }
+  .deposit-section button {
+    padding: .5rem 1rem;
+    background: #28a745; color: white;
+    border: none; border-radius: 5px; cursor: pointer;
+  }
+  .deposit-section .message {
+    margin-top: .5rem; color: #d9072d;
+  }
+  

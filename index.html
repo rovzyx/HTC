@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ScotiaSprout – Financial Growth</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="script.js"></script>
+</head>
+<body>
+
+  <!-- AUTHENTICATION -->
+  <div id="auth" class="auth-container page active">
+    <h1>ScotiaSprout</h1>
+    <div class="tabs">
+      <button id="tabLogin" class="tab-btn active">Login</button>
+      <button id="tabSignup" class="tab-btn">Sign Up</button>
+    </div>
+    <form id="loginForm" class="auth-form">
+      <input type="text" id="loginUser" placeholder="Username" required />
+      <input type="password" id="loginPass" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <form id="signupForm" class="auth-form hidden">
+      <input type="text" id="signupUser" placeholder="Choose Username" required />
+      <input type="password" id="signupPass" placeholder="Create Password" required />
+      <input type="number" id="signupAge" placeholder="Age" required />
+      <button type="submit">Create Account</button>
+    </form>
+    <p id="authMessage" class="message"></p>
+  </div>
+
+  <!-- MAIN NAVBAR -->
+  <nav id="mainNav" class="navbar hidden">
+    <div class="logo">ScotiaSprout</div>
+    <ul class="nav-links">
+      <li><a href="#" data-page="dashboard" class="active">Home</a></li>
+      <li><a href="#" data-page="missions">Missions</a></li>
+      <li><a href="#" data-page="friends">Squad</a></li>
+      <li><a href="#" data-page="rewards">Rewards</a></li>
+      <li><a href="#" data-page="achievements">Achievements</a></li>
+      <li><a href="#" data-page="guides">Guides</a></li>
+      <li><a href="#" data-page="profile">Profile</a></li>
+      <li><button id="logoutBtn" class="nav-logout">Logout</button></li>
+    </ul>
+  </nav>
+
+  <main>
+    <!-- DASHBOARD -->
+    <section id="dashboard" class="page hidden">
+      <h2>Welcome back, <span id="userNameDisplay">Alex</span>!</h2>
+      <div class="stats-overview">
+        <div class="stat">🏆 <span id="pointsDisplay">0</span> Points</div>
+        <div class="stat">⭐ Level <span id="levelDisplay">1</span></div>
+        <div class="stat">🎖️ <span id="badgesDisplay">0</span> Badges</div>
+      </div>
+      <div class="progress-wrapper">
+        <div class="progress-bar">
+          <div id="xpProgressFill" class="progress-fill"></div>
+        </div>
+        <p id="xpProgressText">XP: 0 / 100</p>
+      </div>
+      <div class="tree-visualization">
+        <div class="tree-item">
+          <h3>Savings</h3>
+          <img id="treeSavings" src="assets/images/tree_savings_seed.png" alt="Savings Tree" />
+        </div>
+        <div class="tree-item">
+          <h3>Investing</h3>
+          <img id="treeInvesting" src="assets/images/tree_investing_seed.png" alt="Investing Tree" />
+        </div>
+        <div class="tree-item">
+          <h3>Education</h3>
+          <img id="treeEducation" src="assets/images/tree_education_seed.png" alt="Education Tree" />
+        </div>
+      </div>
+      <div class="suggestion-box">
+        <p id="smartSuggestionText">[Smart suggestion here]</p>
+        <button id="addSuggestionBtn">Add as Mission</button>
+      </div>
+    </section>
+
+    <!-- MISSIONS -->
+    <section id="missions" class="page hidden">
+      <h2>📚 Your Missions</h2>
+      <div class="mission-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Savings">Savings</button>
+        <button class="filter-btn" data-filter="Investing">Investing</button>
+        <button class="filter-btn" data-filter="Education">Education</button>
+        <button class="filter-btn" data-filter="Personal">Personal</button>
+        <button class="filter-btn" data-filter="Seasonal">Seasonal</button>
+        <button class="filter-btn" data-filter="Habit">Habit</button>
+        <button class="filter-btn" data-filter="Community">Community</button>
+        <button class="filter-btn" data-filter="Learning">Learning</button>
+        <button class="filter-btn" data-filter="LifeEvent">LifeEvent</button>
+      </div>
+      <div id="missionsList" class="cards-grid"></div>
+      <button id="openAddMissionModal" class="primary-btn">+ Add Mission</button>
+      <div id="addMissionModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-button" id="cancelAddMission">&times;</span>
+          <h3>Create New Mission</h3>
+          <form id="addMissionForm">
+            <input type="text" id="newMissionTitle" placeholder="Mission title" required />
+            <select id="newMissionCategory">
+              <option value="Savings">Savings</option>
+              <option value="Investing">Investing</option>
+              <option value="Education">Education</option>
+              <option value="Personal">Personal</option>
+              <option value="Seasonal">Seasonal</option>
+              <option value="Habit">Habit</option>
+              <option value="Community">Community</option>
+              <option value="Learning">Learning</option>
+              <option value="LifeEvent">LifeEvent</option>
+            </select>
+            <button type="submit">Add Mission</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRIENDS / LEADERBOARD -->
+    <section id="friends" class="page hidden">
+      <h2>👥 Your Squad</h2>
+      <div class="friend-invite">
+        <input id="friendNameInput" placeholder="Friend's username" />
+        <button id="inviteFriendBtn">Add Friend</button>
+      </div>
+      <p id="inviteStatusMsg" class="message"></p>
+      <table class="leaderboard">
+        <thead>
+          <tr><th>Rank</th><th>Name</th><th>Points</th></tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+      <p id="leaderboardMsg"></p>
+    </section>
+
+    <!-- REWARDS -->
+    <section id="rewards" class="page hidden">
+      <h2>🎁 Rewards Store</h2>
+      <p>You have <strong><span id="pointsBalance">0</span> points</strong>.</p>
+      <div id="rewardsGrid" class="cards-grid"></div>
+      <div id="redeemModal" class="modal hidden">
+        <div class="modal-content">
+          <span class="close-button" id="cancelRedeem">&times;</span>
+          <p id="redeemMessage"></p>
+          <button id="confirmRedeem">Confirm</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACHIEVEMENTS -->
+    <section id="achievements" class="page hidden">
+      <h2>🏅 Achievements</h2>
+      <div class="achievement-list">
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Missions Completed – <span id="missionTierLabel">None</span></h3>
+            <p><span id="missionsCompletedCount">0</span> / <span id="missionNext">1</span></p>
+            <div class="progress-bar"><div id="missionProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Points Earned – <span id="pointsTierLabel">None</span></h3>
+            <p><span id="pointsEarnedCount">0</span> / <span id="pointsNext">100</span></p>
+            <div class="progress-bar"><div id="pointsProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Friends Invited – <span id="friendsTierLabel">None</span></h3>
+            <p><span id="friendsCount">0</span> / <span id="friendsNext">1</span></p>
+            <div class="progress-bar"><div id="friendsProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Deposits Made – <span id="depositsTierLabel">None</span></h3>
+            <p><span id="depositsCount">0</span> / <span id="depositsNext">1</span></p>
+            <div class="progress-bar"><div id="depositsProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Rewards Redeemed – <span id="rewardsTierLabel">None</span></h3>
+            <p><span id="rewardsCount">0</span> / <span id="rewardsNext">1</span></p>
+            <div class="progress-bar"><div id="rewardsProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Custom Missions – <span id="customTierLabel">None</span></h3>
+            <p><span id="customCount">0</span> / <span id="customNext">1</span></p>
+            <div class="progress-bar"><div id="customProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Streak Master – <span id="streakTierLabel">None</span></h3>
+            <p><span id="streakCount">0</span> / <span id="streakNext">1</span></p>
+            <div class="progress-bar"><div id="streakProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Community Builder – <span id="communityTierLabel">None</span></h3>
+            <p><span id="communityCount">0</span> / <span id="communityNext">1</span></p>
+            <div class="progress-bar"><div id="communityProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Learning Champion – <span id="learningTierLabel">None</span></h3>
+            <p><span id="learningCount">0</span> / <span id="learningNext">1</span></p>
+            <div class="progress-bar"><div id="learningProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Milestone Saver – <span id="milestoneTierLabel">None</span></h3>
+            <p><span id="milestoneCount">0</span> / <span id="milestoneNext">1000</span></p>
+            <div class="progress-bar"><div id="milestoneProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+        <div class="achievement">
+          <div class="achieve-icon"></div>
+          <div class="achieve-details">
+            <h3>Holiday Hero – <span id="holidayTierLabel">None</span></h3>
+            <p><span id="holidayCount">0</span> / <span id="holidayNext">1</span></p>
+            <div class="progress-bar"><div id="holidayProgressFill" class="progress-fill"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUIDES -->
+    <section id="guides" class="page hidden">
+      <h2>📖 Financial Literacy Guides</h2>
+      <div id="guidesList" class="cards-grid"></div>
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profile" class="page hidden">
+      <h2>👤 Your Profile</h2>
+      <div class="profile-card">
+        <p><strong>Name:</strong> <span id="profileName">–</span></p>
+        <p><strong>Email:</strong> <span id="profileEmail">–</span></p>
+        <p><strong>Age:</strong> <span id="profileAge">–</span></p>
+        <p><strong>Level:</strong> <span id="profileLevel">–</span></p>
+        <p><strong>Achievements:</strong></p>
+        <p><strong>Bank Balance:</strong> $<span id="profileBankBalance"></span></p>
+        <div class="balance-bar">
+          <div class="balance-fill" id="balanceFill"></div>
+        </div>
+        <p id="balancePctText"></p>
+        <ul id="achievementsList"></ul>
+
+        <div class="deposit-section">
+          <h3>Deposit Funds</h3>
+          <input type="number" id="depositAmount" placeholder="Amount" min="0" />
+          <button id="depositBtn" class="primary-btn">Deposit</button>
+          <p id="depositMsg" class="message"></p>
+        </div>
+
+        <h3>Deposit History</h3>
+        <table id="depositHistoryTable" class="leaderboard">
+          <thead>
+            <tr><th>Date</th><th>Amount ($)</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <h3>Purchase History</h3>
+        <table id="purchaseHistoryTable" class="leaderboard">
+          <thead>
+            <tr><th>Date</th><th>Item</th><th>Amount ($)</th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+</body>
+</html>
